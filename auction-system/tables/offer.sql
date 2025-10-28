@@ -1,8 +1,7 @@
 CREATE TABLE offer (
     id SERIAL PRIMARY KEY,
-    product_id INT UNIQUE NOT NULL REFERENCES product(id) ON DELETE CASCADE,
-    user_id INT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    product_id INT NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     amount DECIMAL(10, 2) NOT NULL CHECK (amount > 0),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (product_id, user_id)
 );
