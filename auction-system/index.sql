@@ -40,3 +40,10 @@ FROM product
 LEFT JOIN offer ON product.id = offer.product_id
 GROUP BY product.id;
 
+-- return products with a maximum offer amount and must exclude offers that are less than 100 dollars
+SELECT product.id, product.title, MAX(offer.amount) AS offer_max
+FROM product
+LEFT JOIN offer ON product.id = offer.product_id
+GROUP BY product.id
+HAVING MAX(offer.amount) > 100;
+
