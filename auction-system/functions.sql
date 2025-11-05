@@ -1,5 +1,7 @@
 CREATE OR REPLACE FUNCTION get_available_balance(p_user_id INTEGER)
-RETURN DECIMAL AS $$
+RETURNS DECIMAL
+LANGUAGE plpgsql
+AS $$
 DECLARE 
     v_current_balance DECIMAL (10,2);
     v_pending_spend DECIMAL(10, 2);
@@ -8,14 +10,14 @@ BEGIN
     WHERE user_id = p_user_id;
 
     SELECT COALESCE(SUM(amount), 0.00) INTO v_pending_spend FROM offer
-    WHERE user_id = p_user_id
+    WHERE user_id = p_user_id;
 
-    RETURN v_current_balance - v_pending_spend
+    RETURN v_current_balance - v_pending_spend;
 END;
-$$ LANGUAGE pspgsql;
+$$;
 
 CREATE OR REPLACE FUNCTION create_offer(p_user_id INTEGER, p_product_id INTEGER, p_offer_amount, DECIMAL)
-RETURN offer AS $$
+RETURNS offer AS $$
 DECLARE 
     v_maximum_offer_value
     v_block_balance_table
@@ -41,5 +43,5 @@ BEGIN
     INSERT INTO offer(user_id, product_id, amount)
     VALUES(p_user_id, p_product_id, p_offer_amount);
 END;
-$$ LANGUAGE pspgsql;
+&&;
 
