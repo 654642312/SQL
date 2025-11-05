@@ -53,3 +53,14 @@ FROM product
 LEFT JOIN offer ON product.id = offer.product_id
 GROUP by product.id;
 
+
+-- return product by id
+SELECT id, title, description
+FROM product
+WHERE id = $1
+
+-- return offer with user first_nanme and last_name by product_id
+SELECT offer.amount, users.first_name, users.last_name
+FROM offer
+INNER JOIN users ON users.id = offer.user_id
+WHERE offer.product_id = $1;
