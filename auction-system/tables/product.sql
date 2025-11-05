@@ -6,3 +6,6 @@ CREATE TABLE product (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE product ADD expiration_date TIMESTAMPTZ DEFAULT NOW() + INTERVAL '1 day' NOT NULL CHECK (expiration_date > NOW());
+ALTER TABLE product ALTER COLUMN expiration_date DROP DEFAULT;

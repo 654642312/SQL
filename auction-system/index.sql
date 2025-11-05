@@ -47,3 +47,9 @@ LEFT JOIN offer ON product.id = offer.product_id
 GROUP BY product.id
 HAVING MAX(offer.amount) > 100;
 
+-- return products with the hightest offer
+SELECT product.id, product.title, COALESCE(MAX(offer.amount), 0) AS offer_max
+FROM product
+LEFT JOIN offer ON product.id = offer.product_id
+GROUP by product.id;
+
