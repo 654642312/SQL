@@ -42,3 +42,7 @@ INSERT INTO offer (product_id, user_id, amount) VALUES
 (5, 8, 100.00),
 (6, 1, 500.00),
 (7, 2, 350.00);
+
+INSERT INTO commission_rule(type, value) VALUES
+('AUCTION_WINNER', 0.1500),
+('USER_DEPOSIT', 0.0200);
