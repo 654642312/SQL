@@ -1,0 +1,12 @@
+CREATE TYPE transaction_type AS ENUM ('DEPOSIT', 'WITHDRAWAL', 'SELLER_PAYMENT')
+
+CREATE TABLE transaction(
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    amount NUMERIC(10,2) NOT NULL,
+    fee_amount NUMERIC(10,2) NOT NULL,
+    final_amount NUMERIC(10,2) NOT NULL,
+    type transaction_type NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+)
