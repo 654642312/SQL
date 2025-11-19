@@ -1,0 +1,12 @@
+CREATE TYPE security_token_type AS ENUM('PASSWORD_RESET', 'EMAIL_VERIFY');
+
+CREATE TABLE IF NOT EXISTS security_token(
+    id SERIAL PRIMARY KEY,
+    token_value VARCHAR(255) NOT NULL,
+    token_type security_token_type NOT NULL,
+    expires_at TIMESTAMPTZ NOT NULL,
+    is_used BOOLEAN NOT NULL DEFAULT FALSE,
+    user_id INT NOT NULL REFERENCES users(id),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
