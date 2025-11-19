@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS auth_metada(
+    id SERIAL PRIMARY KEY, 
+    user_id INT NOT NULL REFERENCES users(id),
+    password_hash VARCHAR(255),
+    provider_name VARCHAR(15),
+    provider_id VARCHAR(255),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

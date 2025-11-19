@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL CHECK(TRIM(first_name) <> ''),
+    last_name VARCHAR(50) NOT NULL CHECK(TRIM(last_name) <> ''),
+    email VARCHAR(255) NOT NULL CHECK(TRIM(email) <> ''),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

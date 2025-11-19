@@ -7,6 +7,7 @@ CREATE TABLE transaction(
     fee_amount NUMERIC(10,2) NOT NULL,
     final_amount NUMERIC(10,2) NOT NULL,
     type transaction_type NOT NULL,
+    invoice_id INT REFERENCES invoice(id)
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 )
