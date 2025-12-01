@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS variant_attribute (
     id SERIAL PRIMARY KEY,
-    variant_id INTEGER REFERENCES product_variant(variant_id) ON DELETE CASCADE,
+    variant_id INTEGER NOT NULL REFERENCES product_variant(id) ON DELETE CASCADE,
     
     attribute_name VARCHAR(50) NOT NULL, 
     

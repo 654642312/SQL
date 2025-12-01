@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS product_variant (
     id SERIAL PRIMARY KEY,
-    product_id INTEGER REFERENCES product(product_id) ON DELETE CASCADE,
+    product_id INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
     sku VARCHAR(100) UNIQUE NOT NULL,    
     price DECIMAL(10, 2) NOT NULL,       
     stock INTEGER NOT NULL DEFAULT 0,
