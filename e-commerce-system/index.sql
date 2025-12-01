@@ -5,15 +5,15 @@ SELECT
     MIN(v.price) AS starting_price,
     (
         SELECT pi.image_url 
-        FROM product_images pi 
+        FROM product_image pi 
         WHERE pi.product_id = p.product_id AND pi.is_main = TRUE AND pi.variant_id IS NULL 
         ORDER BY pi.sort_order 
         LIMIT 1
     ) AS main_image_url
 FROM
-    products p
+    product p
 JOIN
-    product_variants v ON p.product_id = v.product_id
+    product_variant v ON p.product_id = v.product_id
 WHERE
     v.stock > 0
 GROUP BY
