@@ -1,0 +1,8 @@
+CREATE TABLE message (
+    id SERIAL PRIMARY KEY,
+    chat_id INT NOT NULL REFERENCES chats(id) ON DELETE CASCADE,
+    sender_id INT NOT NULL REFERENCES users(id),
+    content VARCHAR(500) NOT NULL,
+    parent_message_id INT REFERENCES messages(id) ON DELETE SET NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
